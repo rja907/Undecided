@@ -12,8 +12,46 @@ import {
 import { connect } from 'react-redux';
 import { addItem } from '../actions/ItemActions';
 
-export default class ItemModal extends Component {
+class ItemModal extends Component {
+  state = {
+    modal: false,
+    name: ''
+  };
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal
+    });
+  };
   render() {
-    return <div />;
+    return (
+      <div>
+        <Button
+          color="dark"
+          style={{ marginBottom: '2rem' }}
+          onClick={this.toggle}
+        >
+          Add Item
+        </Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>Add to Item List</ModalHeader>
+          <ModalBody>
+            <Form onSubmit={this.onSubmit}>
+              <FormGroup>
+                <Label for="item" />
+                <Input
+                  type="text"
+                  name="name"
+                  id="item"
+                  placeholder="Add list item"
+                  onChange={this.onChange}
+                />
+              </FormGroup>
+            </Form>
+          </ModalBody>
+        </Modal>
+      </div>
+    );
   }
 }
+
+export default connect()(ItemModal);
