@@ -8,7 +8,7 @@ import {
   FormGroup,
   Label,
   Input
-} from 'react-strap';
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItem } from '../actions/ItemActions';
 
